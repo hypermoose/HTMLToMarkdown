@@ -1,87 +1,149 @@
-<div markdown="1">
-  <sup>Using <a href="https://wangchujiang.com/#/app" target="_blank">my app</a> is also a way to <a href="https://wangchujiang.com/#/sponsor" target="_blank">support</a> me:</sup>
-  <br>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6758053530" title="Scap: Screenshot & Markup Edit for macOS"><img alt="Scap: Screenshot & Markup Edit" height="52" src="https://wangchujiang.com/appicon/scap.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6757317079" title="Screen Test for macOS"><img alt="Screen Test" height="52" src="https://wangchujiang.com/appicon/screen-test.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6755948110" title="Deskmark for macOS"><img alt="Deskmark" height="52" src="https://wangchujiang.com/appicon/deskmark.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6500434773" title="Keyzer for macOS"><img alt="Keyzer" height="52" src="https://wangchujiang.com/appicon/keyzer.png"></a>
-  <a target="_blank" href="https://github.com/jaywcjlove/vidwall-hub" title="Vidwall Hub for macOS"><img alt="Vidwall Hub" height="52" src="https://wangchujiang.com/appicon/vidwall-hub.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6752624705" title="VidCrop for macOS"><img alt="VidCrop" height="52" src="https://wangchujiang.com/appicon/vidcrop.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6747587746" title="Vidwall for macOS"><img alt="Vidwall" height="52" src="https://wangchujiang.com/appicon/vidwall.png"></a>
-  <a target="_blank" href="https://wangchujiang.com/mousio-hint/" title="Mousio Hint for macOS"><img alt="Mousio Hint" height="52" src="https://wangchujiang.com/appicon/mousio-hint.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6746747327" title="Mousio for macOS"><img alt="Mousio" height="52" src="https://wangchujiang.com/appicon/mousio.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6745227444" title="Musicer for macOS"><img alt="Musicer" height="52" src="https://wangchujiang.com/appicon/musicer.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6743841447" title="Audioer for macOS"><img alt="Audioer" height="52" src="https://wangchujiang.com/appicon/audioer.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6744690194" title="FileSentinel for macOS"><img alt="FileSentinel" height="52" src="https://wangchujiang.com/appicon/file-sentinel.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6743495172" title="FocusCursor for macOS"><img alt="FocusCursor" height="52" src="https://wangchujiang.com/appicon/focus-cursor.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6742680573" title="Videoer for macOS"><img alt="Videoer" height="52" src="https://wangchujiang.com/appicon/videoer.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6740425504" title="KeyClicker for macOS"><img alt="KeyClicker" height="52" src="https://wangchujiang.com/appicon/key-clicker.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6739052447" title="DayBar for macOS"><img alt="DayBar" height="52" src="https://wangchujiang.com/appicon/daybar.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6739444407" title="Iconed for macOS"><img alt="Iconed" height="52" src="https://wangchujiang.com/appicon/iconed.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6737160756" title="Menuist for macOS"><img alt="Menuist" height="52" src="https://wangchujiang.com/appicon/rightmenu-master.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6723903021" title="Paste Quick for macOS"><img alt="Quick RSS" height="52" src="https://wangchujiang.com/appicon/paste-quick.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6670696072&platform=mac" title="Quick RSS for macOS/iOS"><img alt="Quick RSS" height="52" src="https://wangchujiang.com/appicon/quick-rss.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6670167443" title="Web Serve for macOS"><img alt="Web Serve" height="52" src="https://wangchujiang.com/appicon/web-serve.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6503953628&platform=mac" title="Copybook Generator for macOS/iOS"><img alt="Copybook Generator" height="52" src="https://wangchujiang.com/appicon/copybook-generator.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6471227008&platform=mac" title="DevTutor for macOS/iOS"><img alt="DevTutor for SwiftUI" height="52" src="https://wangchujiang.com/appicon/devtutor.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6479819388&platform=mac" title="RegexMate for macOS/iOS"><img alt="RegexMate" height="52" src="https://wangchujiang.com/appicon/regex-mate.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6479194014&platform=mac" title="Time Passage for macOS/iOS"><img alt="Time Passage" height="52" src="https://wangchujiang.com/appicon/time-passage.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6478772538" title="IconizeFolder for macOS"><img alt="Iconize Folder" height="52" src="https://wangchujiang.com/appicon/iconize-folder.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6478511402&platform=mac" title="Textsound Saver for macOS/iOS"><img alt="Textsound Saver" height="52" src="https://wangchujiang.com/appicon/textsound-saver.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6476924627" title="Create Custom Symbols for macOS"><img alt="Create Custom Symbols" height="52" src="https://wangchujiang.com/appicon/create-custom-symbols.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6476452351" title="DevHub for macOS"><img alt="DevHub" height="52" src="https://wangchujiang.com/appicon/devhub.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6476400184" title="Resume Revise for macOS"><img alt="Resume Revise" height="52" src="https://wangchujiang.com/appicon/resume-revise.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6472593276" title="Palette Genius for macOS"><img alt="Palette Genius" height="52" src="https://wangchujiang.com/appicon/palette-genius.png"></a>
-  <a target="_blank" href="https://jaywcjlove.github.io/maslink/?id=6470879005" title="Symbol Scribe for macOS"><img alt="Symbol Scribe" height="52" src="https://wangchujiang.com/appicon/symbol-scribe.png"></a>
-</div>
-<hr>
+# HTMLToMarkdown
 
-HTML To Markdown
-===
+A fully native Swift library for converting HTML to Markdown.
 
-A Swift library based on JavaScriptCore for converting HTML to Markdown.
+This implementation does not use JavaScriptCore, execute JavaScript, or ship a
+JavaScript bundle. It parses HTML with
+[SwiftSoup](https://github.com/scinfu/SwiftSoup) and converts the resulting
+document to Markdown entirely in Swift.
+
+This project is a native rewrite of the
+[original JavaScriptCore-backed HTMLToMarkdown library](https://github.com/jaywcjlove/HTMLToMarkdown).
+It preserves the original public API while adding safe concurrent conversion
+and broader compatibility with current HTML-to-Markdown behavior.
+
+## Features
+
+- Fully native Swift implementation
+- Source-compatible with the original `HTMLToMarkdown` API
+- Stateless, `Sendable` converter that can run on any thread
+- HTML5 parsing through SwiftSoup
+- Headings, links, images, emphasis, code, blockquotes, and thematic breaks
+- Ordered, unordered, nested, and task lists
+- GitHub Flavored Markdown tables, including alignment and spans
+- Form controls, media elements, description lists, and semantic HTML
+- Full-document and HTML-fragment parsing
+- Configurable heading links, rule characters, quote pairs, and newlines
+
+## Requirements
+
+- Swift 6.1+
+- iOS 13+
+- macOS 10.15+
+- tvOS 13+
+- watchOS 6+
 
 ## Installation
 
 ### Swift Package Manager
 
-Add CodeMirror to your project using Xcode:
+In Xcode, select **File → Add Package Dependencies…** and enter:
 
-1. In Xcode, go to `File` → `Add Package Dependencies...`
-2. Enter the repository URL: `https://github.com/jaywcjlove/HTMLToMarkdown.git`
-3. Click `Add Package`
+```text
+https://github.com/hypermoose/HTMLToMarkdown.git
+```
 
-Or add it to your `Package.swift` file:
+Or add the package to `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/jaywcjlove/HTMLToMarkdown.git", from: "1.0.0")
+    .package(
+        url: "https://github.com/hypermoose/HTMLToMarkdown.git",
+        branch: "main"
+    )
 ]
 ```
+
+Then add `HTMLToMarkdown` to your target's dependencies.
 
 ## Usage
 
 ```swift
 import HTMLToMarkdown
 
-let toMarkdown = try HTMLToMarkdown()
-let html = """
-<p>Here's an image:</p>
-<img src="https://example.com/image.jpg" alt="Example Image" title="This is an example">
-<p>And another one without title:</p>
-<img src="https://example.com/photo.png" alt="Photo">
-"""
+let converter = try HTMLToMarkdown()
+let markdown = try converter.conversion("""
+<h2>Hello</h2>
+<p>This is <strong>native Swift</strong>.</p>
+""")
 
-let markdown = try toMarkdown.conversion(html)
-// Here's an image:
-// 
-// ![Example Image](https://example.com/image.jpg "This is an example")
-// 
-// And another one without title:
-// 
-// ![Photo](https://example.com/photo.png)
+// ## Hello
+//
+// This is **native Swift**.
+```
+
+The converter is stateless and `Sendable`, so an instance can safely be
+shared between tasks:
+
+```swift
+let converter = try HTMLToMarkdown()
+
+let markdown = try await Task.detached {
+    try converter.conversion("<p>Converted off the main thread.</p>")
+}.value
+```
+
+## Options
+
+Pass conversion options with the source-compatible
+`conversion(_:options:)` API:
+
+```swift
+let markdown = try converter.conversion(
+    html,
+    options: [
+        "checked": "✓",
+        "enableAutolinkHeadings": true,
+        "fragment": true,
+        "newlines": true,
+        "quotes": ["“”", "‘’"],
+        "rule": "-",
+        "unchecked": "✗"
+    ]
+)
+```
+
+| Option | Default | Description |
+| --- | --- | --- |
+| `checked` | `"[x]"` | Marker for checked controls outside task lists |
+| `enableAutolinkHeadings` | `false` | Adds unique anchor links to headings |
+| `fragment` | `true` | Parses input as an HTML body fragment |
+| `newlines` | `false` | Preserves source newlines where Markdown permits |
+| `quotes` | `["\"\""]` | Opening and closing pairs for nested `<q>` elements |
+| `rule` | `"*"` | Thematic-break character: `*`, `-`, or `_` |
+| `unchecked` | `"[ ]"` | Marker for unchecked controls outside task lists |
+
+## Compatibility
+
+The original public examples remain exact-output tests. The native
+implementation also includes expanded tests for malformed and semantic HTML,
+tables, forms, media, options, and concurrent use. It has been validated
+against all 127 fixtures from
+[`syntax-tree/hast-util-to-mdast`](https://github.com/syntax-tree/hast-util-to-mdast).
+
+Where the bundled JavaScript implementation and current upstream behavior
+differ, this version follows current upstream behavior. Existing callers can
+continue using:
+
+```swift
+let converter = try HTMLToMarkdown()
+let markdown = try converter.conversion(html)
+```
+
+## Development
+
+Run the test suite:
+
+```sh
+swift test
+```
+
+Run the suite with Thread Sanitizer:
+
+```sh
+swift test --sanitize=thread
 ```
 
 ## License
 
-Licensed under the MIT License.
+Licensed under the MIT License. See [LICENSE](LICENSE).

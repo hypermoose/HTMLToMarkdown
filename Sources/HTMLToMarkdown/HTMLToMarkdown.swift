@@ -1,15 +1,12 @@
-// The Swift Programming Language
-// https://docs.swift.org/swift-book
-
 import Foundation
-import JavaScriptCore
 
-public enum HTMLToMarkdownError: Error, CustomStringConvertible {
+/// Errors retained from the JavaScriptCore-backed releases for source compatibility.
+public enum HTMLToMarkdownError: Error, CustomStringConvertible, Sendable {
     case resourceNotFound
     case jsContextInitializationFailed
     case prettierObjectNotFound
     case formattingFailed(String)
-    
+
     public var description: String {
         switch self {
         case .resourceNotFound:
@@ -24,140 +21,91 @@ public enum HTMLToMarkdownError: Error, CustomStringConvertible {
     }
 }
 
-public class HTMLToMarkdown {
-    private var jsContext: JSContext?
-    
-    public init() throws {
-        try setupJSContext()
-    }
-    
+/// A stateless, native Swift HTML-to-Markdown converter.
+///
+/// Instances are `Sendable`, and each call builds its own parser state. The same
+/// instance can therefore be used from any thread or task.
+public final class HTMLToMarkdown: Sendable {
+    public init() throws {}
+
     public func conversion(_ html: String, options: [String: Any] = [:]) throws -> String {
-        guard let jsContext = jsContext else {
-            throw HTMLToMarkdownError.jsContextInitializationFailed
+        // The old implementation JSON-encoded this dictionary before handing it
+        // to JavaScript. Preserve the resulting validation behavior.
+        guard JSONSerialization.isValidJSONObject(options) else {
+            throw HTMLToMarkdownError.formattingFailed(
+                "The options dictionary is not valid JSON"
+            )
         }
-        // Use RunLoop instead of semaphore, more suitable for single-threaded environment
-        var result: Result<String, Error>?
-        var isCompleted = false
-        // Check Prettier availability
-        guard jsContext.objectForKeyedSubscript("HTMLToMarkdown")?.isUndefined == false else {
-            throw HTMLToMarkdownError.prettierObjectNotFound
+
+        do {
+            return try NativeHTMLToMarkdown(
+                options: try ConversionOptions(options)
+            ).convert(html)
+        } catch let error as HTMLToMarkdownError {
+            throw error
+        } catch {
+            throw HTMLToMarkdownError.formattingFailed(String(describing: error))
         }
-        
-        // Convert options to JSON string
-        let optionsData = try JSONSerialization.data(withJSONObject: options, options: [])
-        let optionsString = String(data: optionsData, encoding: .utf8) ?? "{}"
-        
-        // Execute formatting
-        let formatScript = """
-        (function(code, optionsStr) {
-            // Clean up previous results
-            this._htmlToMarkdownResult = undefined;
-            this._htmlToMarkdownError = undefined;
-            
-            // Set up callback function
-            this.notifySwift = function(resultValue, errorValue) {
-                if (errorValue) {
-                    this._htmlToMarkdownError = errorValue;
-                } else {
-                    this._htmlToMarkdownResult = resultValue;
-                }
-                this._swiftCallback && this._swiftCallback();
-            };
-            
-            try {
-                var options = {};
-                if (optionsStr && optionsStr !== '{}') {
-                    options = JSON.parse(optionsStr);
-                }
-                var formatResult = HTMLToMarkdown(code, options);
-                notifySwift(formatResult, null);
-            } catch(e) {
-                notifySwift(null, e.message || e.toString());
-            }
-        })
-        """
-        
-        let formatFunction = jsContext.evaluateScript(formatScript)
-        // Set up Swift callback
-        let swiftCallback: @convention(block) () -> Void = {
-            let jsResult = jsContext.objectForKeyedSubscript("_htmlToMarkdownResult")
-            let jsError = jsContext.objectForKeyedSubscript("_htmlToMarkdownError")
-            
-            if let errorValue = jsError, !errorValue.isUndefined, !errorValue.isNull {
-                let errorMessage = errorValue.toString() ?? "Unknown formatting error"
-                result = .failure(HTMLToMarkdownError.formattingFailed(errorMessage))
-            } else if let resultValue = jsResult, !resultValue.isUndefined, !resultValue.isNull {
-                let formattedCode = resultValue.toString() ?? ""
-                result = .success(formattedCode)
-            } else {
-                result = .failure(HTMLToMarkdownError.formattingFailed("No result received"))
-            }
-            isCompleted = true
-        }
-        jsContext.setObject(swiftCallback, forKeyedSubscript: "_swiftCallback" as NSString)
-        // Call formatting function with options
-        formatFunction?.call(withArguments: [html, optionsString])
-        // Use more efficient waiting method
-        let startTime = CFAbsoluteTimeGetCurrent()
-        let timeout: CFAbsoluteTime = 10.0
-        while !isCompleted {
-            if CFAbsoluteTimeGetCurrent() - startTime > timeout {
-                throw HTMLToMarkdownError.formattingFailed("Formatting operation timed out")
-            }
-            RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.01))
-        }
-        guard let finalResult = result else {
-            throw HTMLToMarkdownError.formattingFailed("No formatting result received")
-        }
-        return try finalResult.get()
     }
-    
-    // 便利方法，保持向后兼容性
+
     public func conversion(_ html: String) throws -> String {
-        return try conversion(html, options: [:])
+        try conversion(html, options: [:])
     }
-    
-    private func setupJSContext() throws {
-        // Load html-to-markdown bundle
-        guard let bundlePath = Bundle.module.url(forResource: "html-to-markdown.bundle.min", withExtension: "js"),
-              let bundleContent = try? String(contentsOf: bundlePath) else {
-            throw HTMLToMarkdownError.resourceNotFound
+}
+
+struct ConversionOptions: Sendable {
+    let checked: String
+    let enableAutolinkHeadings: Bool
+    let fragment: Bool
+    let newlines: Bool
+    let quotes: [String]
+    let rule: Character
+    let unchecked: String
+
+    init(_ values: [String: Any]) throws {
+        checked = values["checked"] as? String ?? "[x]"
+        enableAutolinkHeadings = values["enableAutolinkHeadings"].map(Self.isTruthy) ?? false
+        fragment = values["fragment"].map(Self.isTruthy) ?? true
+        newlines = values["newlines"].map(Self.isTruthy) ?? false
+        let requestedQuotes = (values["quotes"] as? [String])?
+            .filter { $0.count >= 2 } ?? []
+        quotes = requestedQuotes.isEmpty ? ["\"\""] : requestedQuotes
+        unchecked = values["unchecked"] as? String ?? "[ ]"
+
+        guard let requested = values["rule"], Self.isTruthy(requested) else {
+            rule = "*"
+            return
         }
-        
-        // Initialize JavaScript context
-        jsContext = JSContext()
-        // Set up error handling
-        jsContext?.exceptionHandler = { context, exception in
-            print("JavaScript error: \(exception?.description ?? "Unknown error")")
-        }
-        // Load and execute the Prettier bundle
-        guard let context = jsContext else {
-            throw HTMLToMarkdownError.jsContextInitializationFailed
-        }
-        // Execute the bundle - don't check return value as it may be undefined for valid bundles
-        context.evaluateScript(bundleContent)
-        
-        // Find Prettier object using a more systematic approach
-        let toMarkdownObj = findPrettierObject(in: context)
-        guard toMarkdownObj != nil else {
-            throw HTMLToMarkdownError.prettierObjectNotFound
+        if let string = requested as? String,
+           string.count == 1,
+           let character = string.first,
+           character == "*" || character == "-" || character == "_" {
+            rule = character
+        } else {
+            throw HTMLToMarkdownError.formattingFailed(
+                "Cannot serialize rules with `\(requested)` for `options.rule`, "
+                    + "expected `*`, `-`, or `_`"
+            )
         }
     }
-    /// Find Prettier object in JavaScript context
-    private func findPrettierObject(in context: JSContext) -> JSValue? {
-        // Priority order for finding Prettier
-        let searchPaths = [
-            "HTMLToMarkdown",           // Direct global
-            "this.HTMLToMarkdown",      // Global this
-            "window.HTMLToMarkdown",    // Window object (if exists)
-            "globalThis.HTMLToMarkdown" // Modern global reference
-        ]
-        
-        for path in searchPaths {
-            if let obj = context.evaluateScript(path), !obj.isUndefined && !obj.isNull {
-                return obj
-            }
+
+    private static func isTruthy(_ value: Any) -> Bool {
+        switch value {
+        case is NSNull:
+            return false
+        case let value as Bool:
+            return value
+        case let value as String:
+            return !value.isEmpty
+        case let value as Int:
+            return value != 0
+        case let value as Double:
+            return value != 0 && !value.isNaN
+        case let value as NSNumber:
+            return value.doubleValue != 0 && !value.doubleValue.isNaN
+        default:
+            // JavaScript arrays and objects are truthy, including empty ones.
+            return true
         }
-        return nil
     }
 }
